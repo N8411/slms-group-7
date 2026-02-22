@@ -28,13 +28,13 @@ This system allows administrators, lecturers, and students to interact within a 
 ## Files
 Structure of every files:
 
-**1. Fixed Top Bar:**
+### 1. Fixed Top Bar:
     a. Contains back button for user to return to previous page
     b. Contains pagination to show user where they are currently (e.g.,
        documentation > lecturer > add new course)
     c. Contains information on last updated date and who edited the
        documentation
-**2. File Content:**
+### 2. File Content:
     a. Users must be guided step by step by using numbering.
     b. Each step will have their own title
     c. The title font style would be Underlined H
