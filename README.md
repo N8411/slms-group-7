@@ -6,7 +6,7 @@ EduTrack is a Student Learning Management System (SLMS) designed to manage stude
 
 This system allows administrators, lecturers, and students to interact within a centralized platform.
 
-**Documentation Formatting**
+## Documentation Formatting
     **a) Main page:**
        - The main page will display 3 button options to allow user choose their role
           whether they are a student, lecturer or admin
@@ -24,7 +24,7 @@ This system allows administrators, lecturers, and students to interact within a 
              and links to navigate to appropriate **files (c)** )
 
 
-**Files**
+## Files
 Structure of every files:
 
 **1. Fixed Top Bar:**
@@ -44,7 +44,7 @@ Structure of every files:
        through popups
 
 
-**3. Coding File Formatting**
+## Coding File Formatting**
     ● **Indentation:** We will strictly use 4 spaces for indentation (no mixing tabs and spaces).
     ● **Braces:** Opening curly braces { will stay on the same line as the statement (e.g., if
        (condition) {), and closing braces } will be on a new line.
@@ -52,7 +52,8 @@ Structure of every files:
        horizontally.
     ● **Whitespaces** : Writing more than 1 space is not allowed even for assignment operator
        unless for indentation
-**4. Naming Conventions**
+       
+## Naming Conventions
 All namings must be in English and appropriate
     ● **File name:** be short as possible, use lower case characters only, use underscore if it has
        multiple words (e.g. user_dashboard.tsx)
@@ -64,7 +65,7 @@ All namings must be in English and appropriate
        UNDEFINED
 
 
-**Function and Methods Modularity**
+## Function and Methods Modularity
     ● **Single Responsibility:** Every function should do only one thing. For example, a function
        that searches for a student should not also print the output.
     ● **Function Length:** We will aim to keep functions short, ideally under 40-50 lines. If a
@@ -81,7 +82,8 @@ All namings must be in English and appropriate
        calculateGrade(int totalMarks, int assignmentWeight). The maximum parameters should
        have only 4 - 5 to avoid complexity, therefore it is recommended to use an object if too
        many.
-**Continuous Integration Rules**
+       
+## Continuous Integration Rules
 Since we are using GitHub to monitor the main branch, we will follow these steps:
     ● **Branching:** Nobody can push directly to the main branch except the team leader.
        Everyone must create a new branch for their features (e.g., feature/lab3-course-profile).
