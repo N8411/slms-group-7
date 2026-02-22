@@ -46,12 +46,12 @@ Structure of every files:
 
 
 ## Coding File Formatting
-    ● **Indentation:** We will strictly use 4 spaces for indentation (no mixing tabs and spaces).
-    ● **Braces:** Opening curly braces { will stay on the same line as the statement (e.g., if
+    ● Indentation: We will strictly use 4 spaces for indentation (no mixing tabs and spaces).
+    ● Braces: Opening curly braces { will stay on the same line as the statement (e.g., if
        (condition) {), and closing braces } will be on a new line.
-    ● **Line Length:** We will try to keep lines under 100 characters so we don't have to scroll
+    ● Line Length: We will try to keep lines under 100 characters so we don't have to scroll
        horizontally.
-    ● **Whitespaces** : Writing more than 1 space is not allowed even for assignment operator
+    ● Whitespaces: Writing more than 1 space is not allowed even for assignment operator
        unless for indentation
        
 ## Naming Conventions
