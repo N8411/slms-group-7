@@ -55,7 +55,7 @@ Structure of every files:
        unless for indentation
        
 ## Naming Conventions
-All namings must be in English and appropriate
+     All namings must be in English and appropriate
     ● File name: be short as possible, use lower case characters only, use underscore if it has
        multiple words (e.g. user_dashboard.tsx)
     ● Classes: PascalCase (e.g., CourseProfile, StudentManager).
@@ -85,7 +85,7 @@ All namings must be in English and appropriate
        many.
        
 ## Continuous Integration Rules
-Since we are using GitHub to monitor the main branch, we will follow these steps:
+    Since we are using GitHub to monitor the main branch, we will follow these steps:
     ● Branching: Nobody can push directly to the main branch except the team leader.
        Everyone must create a new branch for their features (e.g., feature/lab3-course-profile).
     ● Commits: Commit messages must be clear and describe what was changed (e.g., "Add
