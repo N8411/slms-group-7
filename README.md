@@ -44,7 +44,7 @@ Structure of every files:
        through popups
 
 
-## Coding File Formatting**
+## Coding File Formatting
     ● **Indentation:** We will strictly use 4 spaces for indentation (no mixing tabs and spaces).
     ● **Braces:** Opening curly braces { will stay on the same line as the statement (e.g., if
        (condition) {), and closing braces } will be on a new line.
