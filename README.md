@@ -74,7 +74,7 @@ Structure of every files:
     ● Naming and structure: The function should use descriptive names that clearly show
        purpose and use consistent namespace and prefixing for groups of functions. This is to
        help increase readability.
-    ●Loose Coupling: Modules should have minimal dependencies on each other. A change
+    ● Loose Coupling: Modules should have minimal dependencies on each other. A change
        in one module should ideally not require changes in others.
     ● camelCase: Function and method names will follow the camelCase convention instead
        of underscores. All functions will use meaningful verb-based names (e.g.,
@@ -90,7 +90,7 @@ Structure of every files:
        Everyone must create a new branch for their features (e.g., feature/lab3-course-profile).
     ● Commits: Commit messages must be clear and describe what was changed (e.g., "Add
        linear search function for student ID").
-    ●Pull Requests (PR): To merge into main, a PR must be opened. The team leader must
+    ● Pull Requests (PR): To merge into main, a PR must be opened. The team leader must
        review and authorize the merge to prevent breaking the main codebase.
     ● Task and issue management: Github issues will be used to help manage team tasks
        and track bugs. Each issue will be assigned to a specific team member, include a clear
