@@ -8,10 +8,10 @@ This system allows administrators, lecturers, and students to interact within a 
 
 ## Documentation Formatting
 
-**a) Main page:**
+### a) Main page:
     - The main page will display 3 button options to allow user choose their role
           whether they are a student, lecturer or admin
-**b) Student / Lecturer / Admin Page:**
+### b) Student / Lecturer / Admin Page:
     The page may contain multiple table of contents to separate different action categories
     called “section” (e.g. manage users and manage course will have their own table of
     contents).
