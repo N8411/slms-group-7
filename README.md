@@ -7,21 +7,21 @@ EduTrack is a Student Learning Management System (SLMS) designed to manage stude
 This system allows administrators, lecturers, and students to interact within a centralized platform.
 
 ## Documentation Formatting
-    **a) Main page:**
+    a) Main page:
        - The main page will display 3 button options to allow user choose their role
           whether they are a student, lecturer or admin
-    **b) Student / Lecturer / Admin Page:**
+    b) Student / Lecturer / Admin Page:
        The page may contain multiple table of contents to separate different action categories
        called “section” (e.g. manage users and manage course will have their own table of
        contents).
        Structure of the page:
-          **1. Fixed Top Bar:**
+          1. Fixed Top Bar:
              - Contains back button for user to return to the main page
              - Contains pagination to show user where they are currently (e.g.,
                 documentation > lecturer)
-          2. **Section title:** size of H2 and Bold
-          3. **Section content** : table of content that has 3 columns (numbering, action type
-             and links to navigate to appropriate **files (c)** )
+          2. Section title: size of H2 and Bold
+          3. Section content: table of content that has 3 columns (numbering, action type
+             and links to navigate to appropriate files (c))
 
 
 ## Files
