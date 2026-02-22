@@ -56,43 +56,43 @@ Structure of every files:
        
 ## Naming Conventions
 All namings must be in English and appropriate
-    ● **File name:** be short as possible, use lower case characters only, use underscore if it has
+    ● File name: be short as possible, use lower case characters only, use underscore if it has
        multiple words (e.g. user_dashboard.tsx)
-    ● **Classes:** PascalCase (e.g., CourseProfile, StudentManager).
-    ● **Variables and Methods:** camelCase (e.g., studentName, getCourseCode()).
-    ● **Constants:** UPPERCASE_WITH_UNDERSCORES (e.g., MAX_STUDENTS).
-    ● **Arrays/Lists:** Plural names to show they hold multiple items (e.g., courseList, students).
-    ● **Booleans, null, undefined values** : use upper case for TRUE, FALSE, NULL,
+    ● Classes: PascalCase (e.g., CourseProfile, StudentManager).
+    ● Variables and Methods: camelCase (e.g., studentName, getCourseCode()).
+    ● Constants: UPPERCASE_WITH_UNDERSCORES (e.g., MAX_STUDENTS).
+    ● Arrays/Lists: Plural names to show they hold multiple items (e.g., courseList, students).
+    ● Booleans, null, undefined values: use upper case for TRUE, FALSE, NULL,
        UNDEFINED
 
 
 ## Function and Methods Modularity
-    ● **Single Responsibility:** Every function should do only one thing. For example, a function
+    ● Single Responsibility: Every function should do only one thing. For example, a function
        that searches for a student should not also print the output.
-    ● **Function Length:** We will aim to keep functions short, ideally under 40-50 lines. If a
+    ● Function Length: We will aim to keep functions short, ideally under 40-50 lines. If a
        function gets too long, we will break it down into smaller helper methods.
-    **● Naming and structure:** The function should use descriptive names that clearly show
+    ● Naming and structure: The function should use descriptive names that clearly show
        purpose and use consistent namespace and prefixing for groups of functions. This is to
        help increase readability.
-    ● **Loose Coupling:** Modules should have minimal dependencies on each other. A change
+    ●Loose Coupling: Modules should have minimal dependencies on each other. A change
        in one module should ideally not require changes in others.
-    **● camelCase:** Function and method names will follow the camelCase convention instead
+    ● camelCase: Function and method names will follow the camelCase convention instead
        of underscores. All functions will use meaningful verb-based names (e.g.,
        calculateGrade(), getScoret()). Consistency across the system will be strictly maintained.
-    **● Clear Parameters:** Parameter names should be meaningful and simple. For example,
+    ● Clear Parameters: Parameter names should be meaningful and simple. For example,
        calculateGrade(int totalMarks, int assignmentWeight). The maximum parameters should
        have only 4 - 5 to avoid complexity, therefore it is recommended to use an object if too
        many.
        
 ## Continuous Integration Rules
 Since we are using GitHub to monitor the main branch, we will follow these steps:
-    ● **Branching:** Nobody can push directly to the main branch except the team leader.
+    ● Branching: Nobody can push directly to the main branch except the team leader.
        Everyone must create a new branch for their features (e.g., feature/lab3-course-profile).
-    ● **Commits:** Commit messages must be clear and describe what was changed (e.g., "Add
+    ● Commits: Commit messages must be clear and describe what was changed (e.g., "Add
        linear search function for student ID").
-    ● **Pull Requests (PR):** To merge into main, a PR must be opened. The team leader must
+    ●Pull Requests (PR): To merge into main, a PR must be opened. The team leader must
        review and authorize the merge to prevent breaking the main codebase.
-    **● Task and issue management:** Github issues will be used to help manage team tasks
+    ● Task and issue management: Github issues will be used to help manage team tasks
        and track bugs. Each issue will be assigned to a specific team member, include a clear
        description of the task, and be linked to a corresponding feature branch. This ensures
        clear responsibility, better organization, and smooth collaboration among team members.
