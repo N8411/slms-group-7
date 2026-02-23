@@ -23,6 +23,12 @@ This system allows administrators, lecturers, and students to interact within a 
           2. Section title: size of H2 and Bold
           3. Section content: table of content that has 3 columns (numbering, action type
              and links to navigate to appropriate files (c))
+             
+## Use Case Design
+
+<img width="1038" height="1040" alt="Screenshot 2026-02-23 205306" src="https://github.com/user-attachments/assets/2ed9ee0e-c72a-42a1-afd8-9c9c9337d237" />
+<img width="1038" height="1040" alt="Screenshot 2026-02-23 205306" src="https://github.com/user-attachments/assets/2ed9ee0e-c72a-42a1-afd8-9c9c9337d237" />
+
 
 
 ## Files
