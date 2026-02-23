@@ -36,7 +36,7 @@ This system allows administrators, lecturers, and students to interact within a 
 
 
 
-## Files
+### c) Files
 Structure of every files:
 
 ### 1. Fixed Top Bar:
