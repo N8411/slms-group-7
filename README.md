@@ -2,13 +2,18 @@
 
 ## Description
 
-EduTrack is a Student Learning Management System (SLMS) designed to manage students, courses, assignments, and grades in an organized and efficient way.  
+EduTrack is a Student Learning Management System (SLMS) designed to manage students profile, courses profile, and users registration in an organized and efficient way.  
 
 This system allows administrators, lecturers, and students to interact within a centralized platform.
 
 ## Use Case Diagram
-<img width="1038" height="1040" alt="Screenshot 2026-02-23 205306" src="https://github.com/user-attachments/assets/2ed9ee0e-c72a-42a1-afd8-9c9c9337d237" />
 
+The Use Case Diagram illustrates the functional requirements of the Student Learning Management System (SLMS) by showing the interactions between users (actors) and the system. It identifies the main roles in the system, such as Student, Lecturer, and Admin, and the actions each role can perform.
+<img width="1038" height="1040" alt="Screenshot 2026-02-23 205306" src="https://github.com/user-attachments/assets/2ed9ee0e-c72a-42a1-afd8-9c9c9337d237" />
+The main roles of the actors: <br>
+<br>**Admin:** The Admin has full control over the system. The Admin is responsible for managing both courses and students. This includes adding, searching, editing, deleting, and viewing all courses and student records. The Admin ensures that the system data is accurate and properly maintained.
+<br>**Student:** The Student interacts with the system mainly to access course information. Students can log in, search for courses, view available courses, and log out. Their role is focused on accessing learning materials and course-related information.
+<br>**Lecturer:** The Lecturer manages academic-related activities within the system. The Lecturer can log in, view courses, search courses, and access student information related to their courses. Their role focuses on course management and monitoring student participation.
 ## Class Diagram
 <img width="1005" height="1060" alt="Screenshot 2026-02-23 205726" src="https://github.com/user-attachments/assets/7ba87081-b504-452e-bab8-fc3bd7bf9d80" />
 
