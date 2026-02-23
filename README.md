@@ -55,13 +55,15 @@ Structure of every files:
 
 ## Coding File Formatting
     ● Indentation: We will strictly use 4 spaces for indentation (no mixing tabs and spaces).
-    ● Braces: Opening curly braces { will stay on the same line as the statement (e.g., if (condition) {), and closing braces } will be on a new line.
+    ● Braces: Opening curly braces { will stay on the same line as the statement 
+      (e.g., if (condition) {), and closing braces } will be on a new line.
     ● Line Length: We will try to keep lines under 100 characters so we don't have to scroll horizontally.
     ● Whitespaces: Writing more than 1 space is not allowed even for assignment operator unless for indentation
        
 ## Naming Conventions
     ● All namings must be in English and appropriate
-    ● File name: be short as possible, use lower case characters only, use underscore if it has multiple words (e.g. user_dashboard.tsx)
+    ● File name: be short as possible, use lower case characters only, 
+      use underscore if it has multiple words (e.g. user_dashboard.tsx)
     ● Classes: PascalCase (e.g., CourseProfile, StudentManager).
     ● Variables and Methods: camelCase (e.g., studentName, getCourseCode()).
     ● Constants: UPPERCASE_WITH_UNDERSCORES (e.g., MAX_STUDENTS).
@@ -70,13 +72,20 @@ Structure of every files:
 
 
 ## Function and Methods Modularity
-    ● Single Responsibility: Every function should do only one thing. For example, a function that searches for a student should not also print the output.
-    ● Function Length: We will aim to keep functions short, ideally under 40-50 lines. If a function gets too long, we will break it down into smaller helper              methods.
-    ● Naming and structure: The function should use descriptive names that clearly show purpose and use consistent namespace and prefixing for groups of functions.        This is to help increase readability.
-    ● Loose Coupling: Modules should have minimal dependencies on each other. A change in one module should ideally not require changes in others.
-    ● camelCase: Function and method names will follow the camelCase convention instead of underscores. All functions will use meaningful verb-based names (e.g.,
+    ● Single Responsibility: Every function should do only one thing. 
+      For example, a function that searches for a student should not also print the output.
+    ● Function Length: We will aim to keep functions short, ideally under 40-50 lines. 
+      If a function gets too long, we will break it down into smaller helper              methods.
+    ● Naming and structure: The function should use descriptive names that clearly show purpose and 
+      use consistent namespace and prefixing for groups of functions. This is to help increase readability.
+    ● Loose Coupling: Modules should have minimal dependencies on each other. 
+      A change in one module should ideally not require changes in others.
+    ● camelCase: Function and method names will follow the camelCase convention instead of underscores. 
+      All functions will use meaningful verb-based names (e.g.,
       calculateGrade(), getScoret()). Consistency across the system will be strictly maintained.
-    ● Clear Parameters: Parameter names should be meaningful and simple. For example, calculateGrade(int totalMarks, int assignmentWeight). The maximum parameters         should have only 4 - 5 to avoid complexity, therefore it is recommended to use an object if too many.
+    ● Clear Parameters: Parameter names should be meaningful and simple. 
+      For example, calculateGrade(int totalMarks, int assignmentWeight). 
+      The maximum parameters should have only 4 - 5 to avoid complexity, therefore it is recommended to use an object if too many.
        
 ## Continuous Integration Rules
     Since we are using GitHub to monitor the main branch, we will follow these steps:
