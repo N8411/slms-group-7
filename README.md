@@ -10,6 +10,8 @@ This system allows administrators, lecturers, and students to interact within a 
 
 ### a) Main page:
     - The main page will display 3 button options to allow user choose their role whether they are a student, lecturer or admin
+<img width="797" height="432" alt="Screenshot 2026-02-23 210906" src="https://github.com/user-attachments/assets/50e45d4d-c1f6-4aa8-8ba9-3a2317155bab" />
+
  
 ### b) Student / Lecturer / Admin Page:
     The page may contain multiple table of contents to separate different action categories
@@ -23,6 +25,11 @@ This system allows administrators, lecturers, and students to interact within a 
           2. Section title: size of H2 and Bold
           3. Section content: table of content that has 3 columns (numbering, action type
              and links to navigate to appropriate files (c))
+            
+<img width="747" height="401" alt="Screenshot 2026-02-23 210917" src="https://github.com/user-attachments/assets/6824eb06-aa57-42eb-8f20-76983a18a0c7" />
+
+
+            
              
 ## Use Case Diagram
 <img width="1038" height="1040" alt="Screenshot 2026-02-23 205306" src="https://github.com/user-attachments/assets/2ed9ee0e-c72a-42a1-afd8-9c9c9337d237" />
@@ -51,6 +58,8 @@ Structure of every files:
     e. Images to be displayed must be centered horizontally
     f. If the content has embedded links to navigate to, it must be displayed
        through popups
+<img width="896" height="583" alt="Screenshot 2026-02-23 210928" src="https://github.com/user-attachments/assets/e3244d15-460d-4062-88b6-3ecea0a0bd9f" />
+
 
 
 ## Coding File Formatting
