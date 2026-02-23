@@ -6,6 +6,12 @@ EduTrack is a Student Learning Management System (SLMS) designed to manage stude
 
 This system allows administrators, lecturers, and students to interact within a centralized platform.
 
+## Use Case Diagram
+<img width="1038" height="1040" alt="Screenshot 2026-02-23 205306" src="https://github.com/user-attachments/assets/2ed9ee0e-c72a-42a1-afd8-9c9c9337d237" />
+
+## Class Diagram
+<img width="1005" height="1060" alt="Screenshot 2026-02-23 205726" src="https://github.com/user-attachments/assets/7ba87081-b504-452e-bab8-fc3bd7bf9d80" />
+
 ## Documentation Formatting
 
 ### a) Main page:
@@ -27,16 +33,6 @@ This system allows administrators, lecturers, and students to interact within a 
              and links to navigate to appropriate files (c))
             
 <img width="747" height="401" alt="Screenshot 2026-02-23 210917" src="https://github.com/user-attachments/assets/6824eb06-aa57-42eb-8f20-76983a18a0c7" />
-
-
-            
-             
-## Use Case Diagram
-<img width="1038" height="1040" alt="Screenshot 2026-02-23 205306" src="https://github.com/user-attachments/assets/2ed9ee0e-c72a-42a1-afd8-9c9c9337d237" />
-
-## Class Diagram
-<img width="1005" height="1060" alt="Screenshot 2026-02-23 205726" src="https://github.com/user-attachments/assets/7ba87081-b504-452e-bab8-fc3bd7bf9d80" />
-
 
 
 
