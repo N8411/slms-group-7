@@ -50,28 +50,57 @@ public class Main {
                         foundCourse.displayCourse(); // Display complete course attributes [cite: 22]
                     }
                     break;
-                    /* implement case 3 - 6
+                case 3:
+                    System.out.print("\nEnter Course Code to edit: ");
+                    String editCode = scanner.nextLine();
+                    Course courseToEdit = manager.searchCourse(editCode);
+                    
+                    if (courseToEdit != null) {
+                        System.out.println("Course found! Enter new details (Course Code cannot be changed)."); // Editable except for course codes [cite: 22]
+                        System.out.print("Enter New Course Name: ");
+                        String newName = scanner.nextLine();
+                        System.out.print("Enter New Credit Hours: ");
+                        int newCredits = scanner.nextInt();
+                        scanner.nextLine(); // Consume newline
+                        System.out.print("Enter New Course Summary: ");
+                        String newSummary = scanner.nextLine();
+                        System.out.print("Enter New MS Teams Link: ");
+                        String newLink = scanner.nextLine();
+
+                        manager.editCourse(editCode, newName, newCredits, newSummary, newLink);
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("\nEnter Course Code to delete: ");
+                    String deleteCode = scanner.nextLine();
+                    Course courseToDelete = manager.searchCourse(deleteCode);
+                    
+                    if (courseToDelete != null) {
+                        courseToDelete.displayCourse();
+                        System.out.print("Are you sure you want to delete this course? (Y/N): "); // Confirm message to confirm deletion [cite: 22]
+                        String confirm = scanner.nextLine();
+                        if (confirm.equalsIgnoreCase("Y")) {
+                            manager.deleteCourse(deleteCode);
+                        } else {
+                            System.out.println("Deletion cancelled.");
+                        }
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("\n-- All Courses --");
+                    manager.displayAllCourses(); // Displays all entered course attributes 
+                    break;
+
+                case 6:
+                    running = false;
+                    System.out.println("Exiting system. Goodbye!");
+                    break;
+
+                default:
+                    System.out.println("Invalid option. Please try again.");
             }
         }
-        /*
-        scanner.close();
-        8. For Edit Course:
-           - Ask for Course Code.
-           - If course exists, allow editing all attributes except Course Code.
-           - Call manager.editCourse().
-
-        9. For Delete Course:
-           - Ask for Course Code.
-           - Display course details before deleting.
-           - Ask user for confirmation (Y/N).
-           - If confirmed, call manager.deleteCourse().
-
-        10. For View All Courses:
-            - Call manager.displayAllCourses().
-
-        11. Exit the program when the user selects option 6.
-
-        12. Close the Scanner before the program ends.
-        */
     }
 }
