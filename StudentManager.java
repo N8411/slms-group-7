@@ -57,7 +57,35 @@ public class StudentManager {
 
 
     // 4. Delete Function Development (Irfan)
+    public void deleteStudent(String searchID) {
+        int targetIndex = -1;
 
+        // Search for the target student to delete
+        for (int i = 0; i < studentCount; i++) {
+            if (studentList[i].getStudentID().equals(searchID)) {
+                targetIndex = i;
+                break;
+            }
+        }
+
+        if (targetIndex != -1) {
+            // Confirm message simulation 
+            System.out.println("Student " + searchID + " deleted.");
+            
+            // Shift elements to fill the gap
+            for (int i = targetIndex; i < studentCount - 1; i++) {
+                studentList[i] = studentList[i + 1];
+            }
+            
+            studentList[studentCount - 1] = null;
+            studentCount--;
+            
+            // Validate deletion by showing remaining students
+            displayAllStudents();
+        } else {
+            System.out.println("Student not found");
+        }
+    }
 
     // 5. Data Display Function Development (Asyraf)
 
