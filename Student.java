@@ -29,5 +29,8 @@ public Student(String firstName, String lastName, String studentID, String email
     // Setter methods (asyraaf)
 
     // display student information (Irfan)
-
+    public void displayStudent() {
+        System.out.println("ID: " + studentID + " | Name: " + firstName + " " + lastName);
+        System.out.println("Email: " + email + " | Phone: " + phoneNumber + "\n");
+    }
 }
