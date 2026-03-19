@@ -9,11 +9,11 @@
  * 
  */
 public class StudentManager {
-    // private data members (nabil - done)
+    // private data members (nabil)
     private Student[] studentList = new Student[50]; // Fixed array for storage
     private int studentCount = 0;
 
-    // 1. Student Input Implementation (nabil - done)
+    // 1. Student Input Implementation (nabil)
     public void addStudent(Student newStudent) {
         // Prevent array out-of-bound error
         if (studentCount >= studentList.length) {
