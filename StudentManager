@@ -9,11 +9,22 @@
  * 
  */
 public class StudentManager {
-    // private data members (nabil)
+    // private data members (nabil - done)
+    private Student[] studentList = new Student[50]; // Fixed array for storage
+    private int studentCount = 0;
 
-
-    // 1. Student Input Implementation (nabil)
-
+    // 1. Student Input Implementation (nabil - done)
+    public void addStudent(Student newStudent) {
+        // Prevent array out-of-bound error
+        if (studentCount >= studentList.length) {
+            System.out.println("Error: Student list is full!");
+            return;
+        }
+        
+        studentList[studentCount] = newStudent;
+        studentCount++;
+        System.out.println("Student added successfully!");
+    }
 
     // 2. Search Function Development (Wan)
 
