@@ -88,5 +88,16 @@ public class StudentManager {
     }
 
     // 5. Data Display Function Development (Asyraf)
+    public void displayAllStudents() {
+        System.out.println("=== All Enrolled Students ===");
+        if (studentCount == 0) {
+            System.out.println("No students available.");
+            return;
+        }
 
+        // Display all student attributes in an organized manner
+        for (int i = 0; i < studentCount; i++) {
+            studentList[i].displayStudent();
+        }
+    }
 }
