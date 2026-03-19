@@ -5,7 +5,7 @@
  * class. It integrates the {@link CourseManager} and {@link StudentManager} modules into a single, 
  * cohesive system. Users can navigate through nested menus to perform various management operations 
  * on both course and student profiles safely and continuously until they choose to exit.
- * 
+ *
  */
 import java.util.Scanner;
 
