@@ -1,4 +1,15 @@
+/**
+ * Manages a collection of {@link Course} objects for the SLMS.
+ * 
+ * This class handles the core business logic for course profiles using a fixed-size array. 
+ * It includes boundary checks to prevent storage errors and implements a linear search 
+ * algorithm to locate courses by their unique course code. The manager allows users to 
+ * add new courses, edit existing course details (excluding the course code), safely 
+ * delete courses by shifting array elements, and display all active courses.
+ * 
+ */
 public class CourseManager {
+    // private data members
     private Course[] courseList = new Course[50]; // Fixed array for storage
     private int courseCount = 0;
 
