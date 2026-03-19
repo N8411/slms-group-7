@@ -27,9 +27,33 @@ public class StudentManager {
     }
 
     // 2. Search Function Development (Wan)
-
-    
+    public Student searchStudent(String searchID) {
+        // Implement a linear search function
+        for (int i = 0; i < studentCount; i++) {
+            if (studentList[i].getStudentID().equals(searchID)) {
+                return studentList[i]; // Return successful search
+            }
+        }
+        
+        System.out.println("Student not found"); 
+        return null;
+    }
+  
     // 3. Edit Function Development (Wan)
+    public void editStudent(String searchID, String newFirstName, String newLastName, String newEmail, String newPhone) {
+        Student targetStudent = searchStudent(searchID);
+        
+        if (targetStudent != null) {
+            // Update all attributes except Student ID
+            targetStudent.setFirstName(newFirstName);
+            targetStudent.setLastName(newLastName);
+            targetStudent.setEmail(newEmail);
+            targetStudent.setPhoneNumber(newPhone);
+            
+            System.out.println("Student updated! Here are the validated changes:");
+            targetStudent.displayStudent();
+        }
+    }
 
 
     // 4. Delete Function Development (Irfan)
