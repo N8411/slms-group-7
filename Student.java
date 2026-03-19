@@ -8,9 +8,21 @@
  * 
  */
 public class Student {
-    // private data members (wan)
+    // private data members (wan - done)
+    private String firstName;
+    private String lastName;
+    private String studentID; // No setter provided so it cannot be edited
+    private String email;
+    private String phoneNumber;
 
-    // Student Constructor (wan)
+    // Student Constructor (wan - done)
+public Student(String firstName, String lastName, String studentID, String email, String phoneNumber) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.studentID = studentID;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+}
 
     // Getter methods (asyraaf)
 
