@@ -1,0 +1,29 @@
+/**
+ * Manages a collection of {@link Student} objects for the SLMS.
+ * 
+ * This class handles all core operations for student profiles. It utilizes a fixed-size 
+ * array to store multiple student records and implements boundary checks to prevent 
+ * out-of-bounds errors. Key functionalities include adding new students, performing 
+ * linear searches by student ID, editing existing details, deleting records with 
+ * array shifting, and displaying the complete list of enrolled students.
+ * 
+ */
+public class StudentManager {
+    // private data members (nabil)
+
+
+    // 1. Student Input Implementation (nabil)
+
+
+    // 2. Search Function Development (Wan)
+
+    
+    // 3. Edit Function Development (Wan)
+
+
+    // 4. Delete Function Development (Irfan)
+
+
+    // 5. Data Display Function Development (Asyraf)
+
+}
