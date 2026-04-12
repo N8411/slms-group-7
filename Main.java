@@ -15,6 +15,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         CourseManager courseManager = new CourseManager();
         StudentManager studentManager = new StudentManager();
+        EnrollmentManager enrollmentManager = new EnrollmentManager(courseManager, studentManager);
+        CacheAPI cacheAPI = new CacheAPI(courseManager, studentManager);
         boolean running = true;
 
         System.out.println("Welcome to the Student Learning Management System (SLMS)");
@@ -24,20 +26,24 @@ public class Main {
             System.out.println("\n--- MAIN MENU ---");
             System.out.println("1. Course Management");
             System.out.println("2. Student Management");
-            System.out.println("3. Exit");
-            System.out.print("Select an option (1-3): ");
+            System.out.println("3. Enrollment Management");
+            System.out.println("4. Exit");
+            System.out.print("Select an option (1-4): ");
             
             int mainChoice = scanner.nextInt();
             scanner.nextLine(); // Consume the newline
 
             switch (mainChoice) {
                 case 1:
-                    handleCourseMenu(scanner, courseManager);
+                    handleCourseMenu(scanner, courseManager, cacheAPI);
                     break;
                 case 2:
-                    handleStudentMenu(scanner, studentManager);
+                    handleStudentMenu(scanner, studentManager, cacheAPI);
                     break;
                 case 3:
+                    handleEnrollmentMenu(scanner, enrollmentManager, courseManager, studentManager, cacheAPI);
+                    break;
+                case 4:
                     running = false;
                     System.out.println("Exiting system. Goodbye!");
                     break;
