@@ -296,5 +296,109 @@ public class Main {
         }
     }
 
-    // please create a new menu for enrollment management and delete this comment
+   // Enrollment Management Menu
+    private static void handleEnrollmentMenu(Scanner scanner, EnrollmentManager enrollmentManager,
+                                              CourseManager courseManager, StudentManager studentManager,
+                                              CacheAPI cacheAPI) {
+        boolean enrollmentMenuRunning = true;
+        while (enrollmentMenuRunning) {
+            System.out.println("\n--- ENROLLMENT MANAGEMENT ---");
+            System.out.println("1. Add Course to Student");
+            System.out.println("2. Add Student to Course");
+            System.out.println("3. Find Course by Student ID");
+            System.out.println("4. List All Courses for a Student");
+            System.out.println("5. Find Student by Course Code");
+            System.out.println("6. List All Students in a Course");
+            System.out.println("7. View All Enrollments");
+            System.out.println("8. Back to Main Menu");
+            System.out.print("Select an option (1-8): ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\n-- Add Course to Student --");
+                    cacheAPI.showAutoSuggestion("student");
+                    System.out.print("Enter Student ID: ");
+                    String studentID1 = scanner.nextLine();
+                    cacheAPI.cacheTextField("studentID", studentID1);
+
+                    cacheAPI.showAutoSuggestion("course");
+                    System.out.print("Enter Course Code: ");
+                    String courseCode1 = scanner.nextLine();
+                    cacheAPI.cacheTextField("courseCode", courseCode1);
+
+                    enrollmentManager.addCourseToStudent(studentID1, courseCode1);
+                    break;
+
+                case 2:
+                    System.out.println("\n-- Add Student to Course --");
+                    cacheAPI.showAutoSuggestion("course");
+                    System.out.print("Enter Course Code: ");
+                    String courseCode2 = scanner.nextLine();
+                    cacheAPI.cacheTextField("courseCode", courseCode2);
+
+                    cacheAPI.showAutoSuggestion("student");
+                    System.out.print("Enter Student ID: ");
+                    String studentID2 = scanner.nextLine();
+                    cacheAPI.cacheTextField("studentID", studentID2);
+
+                    enrollmentManager.addStudentToCourse(courseCode2, studentID2);
+                    break;
+
+                case 3:
+                    System.out.println("\n-- Find Course by Student ID --");
+                    cacheAPI.showAutoSuggestion("student");
+                    System.out.print("Enter Student ID: ");
+                    String studentID3 = scanner.nextLine();
+                    cacheAPI.cacheTextField("studentID", studentID3);
+
+                    enrollmentManager.findCourse(studentID3);
+                    break;
+
+                case 4:
+                    System.out.println("\n-- List All Courses for a Student --");
+                    cacheAPI.showAutoSuggestion("student");
+                    System.out.print("Enter Student ID: ");
+                    String studentID4 = scanner.nextLine();
+                    cacheAPI.cacheTextField("studentID", studentID4);
+
+                    enrollmentManager.listCourses(studentID4);
+                    break;
+
+                case 5:
+                    System.out.println("\n-- Find Student by Course Code --");
+                    cacheAPI.showAutoSuggestion("course");
+                    System.out.print("Enter Course Code: ");
+                    String courseCode5 = scanner.nextLine();
+                    cacheAPI.cacheTextField("courseCode", courseCode5);
+
+                    enrollmentManager.findStudent(courseCode5);
+                    break;
+
+                case 6:
+                    System.out.println("\n-- List All Students in a Course --");
+                    cacheAPI.showAutoSuggestion("course");
+                    System.out.print("Enter Course Code: ");
+                    String courseCode6 = scanner.nextLine();
+                    cacheAPI.cacheTextField("courseCode", courseCode6);
+
+                    enrollmentManager.listStudents(courseCode6);
+                    break;
+
+                case 7:
+                    System.out.println("\n-- All Enrollments --");
+                    enrollmentManager.displayAllEnrollments();
+                    break;
+
+                case 8:
+                    enrollmentMenuRunning = false;
+                    break;
+
+                default:
+                    System.out.println("Invalid option.");
+            }
+        }
+    }
 }
