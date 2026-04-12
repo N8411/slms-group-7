@@ -39,18 +39,28 @@ public class CourseManager {
         System.out.println("Course not found"); 
         return null;
     }
+
+    // Silent search (for internal use by EnrollmentManager - no print)
+    public Course getCourse(String searchCode) {
+        for (int i = 0; i < courseCount; i++) {
+            if (courseList[i].getCourseCode().equals(searchCode)) {
+                return courseList[i];
+            }
+        }
+        return null;
+    }
     
- // 3. Edit Function Development
-    public void editCourse(String searchCode, String newName, int newCredits, String newSummary, String newLink) {
+    // 3. Edit Function Development (updated with courseType)
+    public void editCourse(String searchCode, String newName, String newCourseType, int newCredits, String newSummary, String newLink) {
         Course targetCourse = searchCourse(searchCode);
-        
+
         if (targetCourse != null) {
-            // Update all attributes except Course Code
             targetCourse.setCourseName(newName);
+            targetCourse.setCourseType(newCourseType);
             targetCourse.setCreditHours(newCredits);
             targetCourse.setSummary(newSummary);
             targetCourse.setMsTeamsLink(newLink);
-            
+
             System.out.println("Course updated! Here are the validated changes:");
             targetCourse.displayCourse();
         }
@@ -99,5 +109,23 @@ public class CourseManager {
         for (int i = 0; i < courseCount; i++) {
             courseList[i].displayCourse();
         }
+    }
+
+    // NEW: Get all course display strings for API auto-suggestion
+    public String[] getAllCourseDisplayStrings() {
+        String[] displays = new String[courseCount];
+        for (int i = 0; i < courseCount; i++) {
+            displays[i] = courseList[i].getCourseCode() + " - " + courseList[i].getCourseName();
+        }
+        return displays;
+    }
+
+    // NEW: Get all course codes
+    public String[] getAllCourseCodes() {
+        String[] codes = new String[courseCount];
+        for (int i = 0; i < courseCount; i++) {
+            codes[i] = courseList[i].getCourseCode();
+        }
+        return codes;
     }
 }
