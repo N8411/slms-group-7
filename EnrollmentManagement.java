@@ -30,7 +30,7 @@ public class EnrollmentManager {
         this.studentManager = sm;
     }
 
-    // 2a. Add a course to a student (initiate Course-Student relationship)
+    // Add a course to a student (initiate Course-Student relationship)
     public boolean addCourseToStudent(String studentID, String courseCode) {
         // Validate student exists in the system
         Student student = studentManager.getStudent(studentID);
@@ -68,7 +68,7 @@ public class EnrollmentManager {
         return true;
     }
 
-    // 2b. Add a student to a course (initiate Course-Student relationship)
+    // Add a student to a course (initiate Course-Student relationship)
     public boolean addStudentToCourse(String courseCode, String studentID) {
         // Delegates to addCourseToStudent (same relationship, different perspective)
         return addCourseToStudent(studentID, courseCode);
@@ -84,7 +84,7 @@ public class EnrollmentManager {
         return false;
     }
 
-    // 2c. Find a student's course based on student's ID
+    // Find a student's course based on student's ID
     public void findCourse(String studentID) {
         // Validate student exists
         Student student = studentManager.getStudent(studentID);
@@ -111,7 +111,7 @@ public class EnrollmentManager {
         }
     }
 
-    // 2d. List all courses that a student is enrolled in
+    // List all courses that a student is enrolled in
     public void listCourses(String studentID) {
         Student student = studentManager.getStudent(studentID);
         if (student == null) {
@@ -141,7 +141,7 @@ public class EnrollmentManager {
         }
     }
 
-    // 2e. Find a student in a course based on course's code
+    // Find a student in a course based on course's code
     public void findStudent(String courseCode) {
         // Validate course exists
         Course course = courseManager.getCourse(courseCode);
@@ -168,7 +168,7 @@ public class EnrollmentManager {
         }
     }
 
-    // 2f. List all students assigned to a specific course
+    // List all students assigned to a specific course
     public void listStudents(String courseCode) {
         Course course = courseManager.getCourse(courseCode);
         if (course == null) {
