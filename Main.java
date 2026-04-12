@@ -180,7 +180,7 @@ public class Main {
     }
 
     // STUDENT MANAGEMENT MENU
-    private static void handleStudentMenu(Scanner scanner, StudentManager manager) {
+    private static void handleStudentMenu(Scanner scanner, StudentManager manager, CacheAPI cacheAPI) {
         boolean studentMenuRunning = true;
         while (studentMenuRunning) {
             System.out.println("\n--- STUDENT MANAGEMENT ---");
@@ -191,41 +191,60 @@ public class Main {
             System.out.println("5. View All Students");
             System.out.println("6. Back to Main Menu");
             System.out.print("Select an option (1-6): ");
-            
+
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
                     System.out.println("\n-- Add New Student --");
-                    System.out.print("Enter First Name: ");
-                    String fName = scanner.nextLine();
-                    System.out.print("Enter Last Name: ");
-                    String lName = scanner.nextLine();
+
+                    // Auto-suggestion for Student ID
+                    cacheAPI.showAutoSuggestion("student");
+
                     System.out.print("Enter Student ID: ");
                     String id = scanner.nextLine();
+                    cacheAPI.cacheTextField("studentID", id);
+
+                    System.out.print("Enter First Name: ");
+                    String fName = scanner.nextLine();
+
+                    System.out.print("Enter Last Name: ");
+                    String lName = scanner.nextLine();
+
                     System.out.print("Enter Email: ");
                     String email = scanner.nextLine();
+
                     System.out.print("Enter Phone Number: ");
                     String phone = scanner.nextLine();
 
                     Student newStudent = new Student(fName, lName, id, email, phone);
                     manager.addStudent(newStudent);
                     break;
+
                 case 2:
-                    System.out.print("\nEnter Student ID to search: ");
+                    System.out.println("\n-- Search Student --");
+                    cacheAPI.showAutoSuggestion("student");
+                    System.out.print("Enter Student ID to search: ");
                     String searchID = scanner.nextLine();
+                    cacheAPI.cacheTextField("studentID", searchID);
+
                     Student foundStudent = manager.searchStudent(searchID);
                     if (foundStudent != null) {
                         System.out.println("\n-- Search Result --");
                         foundStudent.displayStudent();
                     }
                     break;
+
                 case 3:
-                    System.out.print("\nEnter Student ID to edit: ");
+                    System.out.println("\n-- Edit Student --");
+                    cacheAPI.showAutoSuggestion("student");
+                    System.out.print("Enter Student ID to edit: ");
                     String editID = scanner.nextLine();
+                    cacheAPI.cacheTextField("studentID", editID);
+
                     Student studentToEdit = manager.searchStudent(editID);
-                    
+
                     if (studentToEdit != null) {
                         System.out.println("Student found! Enter new details (Student ID cannot be changed).");
                         System.out.print("Enter New First Name: ");
@@ -240,11 +259,16 @@ public class Main {
                         manager.editStudent(editID, newFName, newLName, newEmail, newPhone);
                     }
                     break;
+
                 case 4:
-                    System.out.print("\nEnter Student ID to delete: ");
+                    System.out.println("\n-- Delete Student --");
+                    cacheAPI.showAutoSuggestion("student");
+                    System.out.print("Enter Student ID to delete: ");
                     String deleteID = scanner.nextLine();
+                    cacheAPI.cacheTextField("studentID", deleteID);
+
                     Student studentToDelete = manager.searchStudent(deleteID);
-                    
+
                     if (studentToDelete != null) {
                         studentToDelete.displayStudent();
                         System.out.print("Are you sure you want to delete this student? (Y/N): ");
@@ -256,16 +280,21 @@ public class Main {
                         }
                     }
                     break;
+
                 case 5:
                     System.out.println("\n-- All Students --");
                     manager.displayAllStudents();
                     break;
+
                 case 6:
                     studentMenuRunning = false;
                     break;
+
                 default:
                     System.out.println("Invalid option.");
             }
         }
     }
+
+    // please create a new menu for enrollment management and delete this comment
 }
