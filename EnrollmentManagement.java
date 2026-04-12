@@ -54,7 +54,7 @@ public class EnrollmentManager {
 
     }
 
-    // 2c. Find a student's course based on student's ID
+    // Find a student's course based on student's ID
     public void findCourse(String studentID) {
         // Validate student exists
 
@@ -67,7 +67,7 @@ public class EnrollmentManager {
 
     }
 
-    // 2e. Find a student in a course based on course's code
+    // Find a student in a course based on course's code
     public void findStudent(String courseCode) {
         // Validate course exists
 
