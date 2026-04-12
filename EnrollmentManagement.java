@@ -12,11 +12,24 @@
  */
 public class EnrollmentManager {
     // Parallel arrays for Course-Student relationships
-
+    private String[] enrollmentStudentIDs;
+    private String[] enrollmentCourseCodes;
+    private int enrollmentCount;
+    private static final int MAX_ENROLLMENTS = 500;
+    
     // References to managers for validation
-
+    private CourseManager courseManager;
+    private StudentManager studentManager;
+    
     // Constructor
-
+     public EnrollmentManager(CourseManager cm, StudentManager sm) {
+        enrollmentStudentIDs = new String[MAX_ENROLLMENTS];
+        enrollmentCourseCodes = new String[MAX_ENROLLMENTS];
+        enrollmentCount = 0;
+        this.courseManager = cm;
+        this.studentManager = sm;
+    }
+    
     // Add a course to a student (initiate Course-Student relationship)
     public boolean addCourseToStudent(String studentID, String courseCode) {
         // Validate student exists in the system
