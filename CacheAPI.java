@@ -68,6 +68,31 @@ public class CacheAPI {
      */
     public void showAutoSuggestion(String type) {
         // Use java.util.Arrays API (as mentioned by lecturer - library like Math is also acceptable)
+        switch (type) {
+            case "course":
+                String[] existingCourses = courseManager.getAllCourseDisplayStrings();
+                if (existingCourses.length > 0) {
+                    System.out.println("  [Auto-Suggest] Available courses: "
+                            + Arrays.toString(existingCourses));
+                }
+                if (!cachedCourseCodes.isEmpty()) {
+                    System.out.println("  [Cache] Recently entered course codes: "
+                            + cachedCourseCodes.toString());
+                }
+                break;
+
+            case "student":
+                String[] existingStudents = studentManager.getAllStudentDisplayStrings();
+                if (existingStudents.length > 0) {
+                    System.out.println("  [Auto-Suggest] Available students: "
+                            + Arrays.toString(existingStudents));
+                }
+                if (!cachedStudentIDs.isEmpty()) {
+                    System.out.println("  [Cache] Recently entered student IDs: "
+                            + cachedStudentIDs.toString());
+                }
+                break;
+        }
     }
 
     /**
@@ -80,8 +105,42 @@ public class CacheAPI {
      */
     public String[] searchSuggestions(String type, String prefix) {
         // Use java.lang.String API - toLowerCase() and startsWith()
-    }
+        String lowerPrefix = prefix.toLowerCase();
+        ArrayList<String> matches = new ArrayList<>();
 
+        if (type.equals("course")) {
+            String[] courses = courseManager.getAllCourseDisplayStrings();
+            for (String course : courses) {
+                if (course.toLowerCase().startsWith(lowerPrefix)) {
+                    matches.add(course);
+                }
+            }
+            // Also check cached entries
+            for (String cached : cachedCourseCodes) {
+                if (cached.toLowerCase().startsWith(lowerPrefix)
+                        && !matches.contains(cached)) {
+                    matches.add(cached);
+                }
+            }
+        } else if (type.equals("student")) {
+            String[] students = studentManager.getAllStudentDisplayStrings();
+            for (String student : students) {
+                if (student.toLowerCase().startsWith(lowerPrefix)) {
+                    matches.add(student);
+                }
+            }
+            for (String cached : cachedStudentIDs) {
+                if (cached.toLowerCase().startsWith(lowerPrefix)
+                        && !matches.contains(cached)) {
+                    matches.add(cached);
+                }
+            }
+        }
+
+        // Use java.util.ArrayList API - toArray()
+        return matches.toArray(new String[0]);
+    }
+    
     /**
      * Clears all cached data.
      */
