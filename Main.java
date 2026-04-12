@@ -54,7 +54,7 @@ public class Main {
     }
 
     // COURSE MANAGEMENT MENU
-    private static void handleCourseMenu(Scanner scanner, CourseManager manager) {
+    private static void handleCourseMenu(Scanner scanner, CourseManager manager, CacheAPI cacheAPI) {
         boolean courseMenuRunning = true;
         while (courseMenuRunning) {
             System.out.println("\n--- COURSE MANAGEMENT ---");
@@ -65,46 +65,72 @@ public class Main {
             System.out.println("5. View All Courses");
             System.out.println("6. Back to Main Menu");
             System.out.print("Select an option (1-6): ");
-            
+
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
                     System.out.println("\n-- Add New Course --");
-                    System.out.print("Enter Course Name: ");
-                    String name = scanner.nextLine();
+
+                    // Auto-suggestion for Course Code
+                    cacheAPI.showAutoSuggestion("course");
+
                     System.out.print("Enter Course Code: ");
                     String code = scanner.nextLine();
+                    // Cache the input for future auto-suggestion
+                    cacheAPI.cacheTextField("courseCode", code);
+
+                    System.out.print("Enter Course Name: ");
+                    String name = scanner.nextLine();
+                    cacheAPI.cacheTextField("courseName", name);
+
+                    System.out.print("Enter Course Type (core/elective/university): ");
+                    String courseType = scanner.nextLine();
+
                     System.out.print("Enter Credit Hours: ");
                     int credits = scanner.nextInt();
-                    scanner.nextLine(); 
+                    scanner.nextLine();
+
                     System.out.print("Enter Course Summary: ");
                     String summary = scanner.nextLine();
+
                     System.out.print("Enter MS Teams Link: ");
                     String link = scanner.nextLine();
 
-                    Course newCourse = new Course(name, code, credits, summary, link);
+                    Course newCourse = new Course(name, code, courseType, credits, summary, link);
                     manager.addCourse(newCourse);
                     break;
+
                 case 2:
-                    System.out.print("\nEnter Course Code to search: ");
+                    System.out.println("\n-- Search Course --");
+                    cacheAPI.showAutoSuggestion("course");
+                    System.out.print("Enter Course Code to search: ");
                     String searchCode = scanner.nextLine();
+                    cacheAPI.cacheTextField("courseCode", searchCode);
+
                     Course foundCourse = manager.searchCourse(searchCode);
                     if (foundCourse != null) {
                         System.out.println("\n-- Search Result --");
                         foundCourse.displayCourse();
                     }
                     break;
+
                 case 3:
-                    System.out.print("\nEnter Course Code to edit: ");
+                    System.out.println("\n-- Edit Course --");
+                    cacheAPI.showAutoSuggestion("course");
+                    System.out.print("Enter Course Code to edit: ");
                     String editCode = scanner.nextLine();
+                    cacheAPI.cacheTextField("courseCode", editCode);
+
                     Course courseToEdit = manager.searchCourse(editCode);
-                    
+
                     if (courseToEdit != null) {
                         System.out.println("Course found! Enter new details (Course Code cannot be changed).");
                         System.out.print("Enter New Course Name: ");
                         String newName = scanner.nextLine();
+                        System.out.print("Enter New Course Type (core/elective/university): ");
+                        String newCourseType = scanner.nextLine();
                         System.out.print("Enter New Credit Hours: ");
                         int newCredits = scanner.nextInt();
                         scanner.nextLine();
@@ -113,14 +139,19 @@ public class Main {
                         System.out.print("Enter New MS Teams Link: ");
                         String newLink = scanner.nextLine();
 
-                        manager.editCourse(editCode, newName, newCredits, newSummary, newLink);
+                        manager.editCourse(editCode, newName, newCourseType, newCredits, newSummary, newLink);
                     }
                     break;
+
                 case 4:
-                    System.out.print("\nEnter Course Code to delete: ");
+                    System.out.println("\n-- Delete Course --");
+                    cacheAPI.showAutoSuggestion("course");
+                    System.out.print("Enter Course Code to delete: ");
                     String deleteCode = scanner.nextLine();
+                    cacheAPI.cacheTextField("courseCode", deleteCode);
+
                     Course courseToDelete = manager.searchCourse(deleteCode);
-                    
+
                     if (courseToDelete != null) {
                         courseToDelete.displayCourse();
                         System.out.print("Are you sure you want to delete this course? (Y/N): ");
@@ -132,13 +163,16 @@ public class Main {
                         }
                     }
                     break;
+
                 case 5:
                     System.out.println("\n-- All Courses --");
                     manager.displayAllCourses();
                     break;
+
                 case 6:
                     courseMenuRunning = false;
                     break;
+
                 default:
                     System.out.println("Invalid option.");
             }
