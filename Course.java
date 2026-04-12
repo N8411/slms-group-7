@@ -2,7 +2,7 @@
  * Represents a course profile within the Student Learning Management System (SLMS).
  *
  * This class serves as the data model for a course, storing attributes such as the 
- * course name, unique course code, credit hours, summary, and MS Teams link. 
+ * course name, unique course code, course type, credit hours, summary, and MS Teams link. 
  * It provides necessary getter and setter methods for data manipulation. 
  * Note that the course code is initialized upon creation and cannot be modified later.
  *
