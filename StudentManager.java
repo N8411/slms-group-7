@@ -38,6 +38,16 @@ public class StudentManager {
         System.out.println("Student not found"); 
         return null;
     }
+
+    // Silent search (for internal use by EnrollmentManager - no print)
+    public Student getStudent(String searchID) {
+        for (int i = 0; i < studentCount; i++) {
+            if (studentList[i].getStudentID().equals(searchID)) {
+                return studentList[i];
+            }
+        }
+        return null;
+    }
   
     // 3. Edit Function Development (Wan)
     public void editStudent(String searchID, String newFirstName, String newLastName, String newEmail, String newPhone) {
@@ -99,5 +109,23 @@ public class StudentManager {
         for (int i = 0; i < studentCount; i++) {
             studentList[i].displayStudent();
         }
+    }
+
+    // NEW: Get all student display strings for API auto-suggestion
+    public String[] getAllStudentDisplayStrings() {
+        String[] displays = new String[studentCount];
+        for (int i = 0; i < studentCount; i++) {
+            displays[i] = studentList[i].getStudentID() + " - " + studentList[i].getFirstName() + " " + studentList[i].getLastName();
+        }
+        return displays;
+    }
+
+    // NEW: Get all student IDs
+    public String[] getAllStudentIDs() {
+        String[] ids = new String[studentCount];
+        for (int i = 0; i < studentCount; i++) {
+            ids[i] = studentList[i].getStudentID();
+        }
+        return ids;
     }
 }
