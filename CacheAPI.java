@@ -145,6 +145,10 @@ public class CacheAPI {
      * Clears all cached data.
      */
     public void clearCache() {
-
+        cachedCourseCodes.clear();
+        cachedStudentIDs.clear();
+        cachedCourseNames.clear();
+        cachedTextFieldInputs.clear();
+        System.out.println("[CacheAPI] All cached data cleared.");
     }
 }
