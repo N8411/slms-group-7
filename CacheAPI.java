@@ -30,8 +30,32 @@ public class CacheAPI {
      * @param value     The value entered by the user
      */
     public void cacheTextField(String fieldType, String value) {
+        if (value == null || value.trim().isEmpty()) {
+            return;
+        }
 
         // Use java.util API - ArrayList contains() and add() methods
+        switch (fieldType) {
+            case "courseCode":
+                if (!cachedCourseCodes.contains(value)) {
+                    cachedCourseCodes.add(value);
+                }
+                break;
+            case "studentID":
+                if (!cachedStudentIDs.contains(value)) {
+                    cachedStudentIDs.add(value);
+                }
+                break;
+            case "courseName":
+                if (!cachedCourseNames.contains(value)) {
+                    cachedCourseNames.add(value);
+                }
+                break;
+            default:
+                if (!cachedTextFieldInputs.contains(value)) {
+                    cachedTextFieldInputs.add(value);
+                }
+        }
     }
 
     /**
