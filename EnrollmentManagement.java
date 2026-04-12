@@ -16,21 +16,21 @@ public class EnrollmentManager {
     private String[] enrollmentCourseCodes;
     private int enrollmentCount;
     private static final int MAX_ENROLLMENTS = 500;
-    
+
     // References to managers for validation
     private CourseManager courseManager;
     private StudentManager studentManager;
-    
+
     // Constructor
-     public EnrollmentManager(CourseManager cm, StudentManager sm) {
+    public EnrollmentManager(CourseManager cm, StudentManager sm) {
         enrollmentStudentIDs = new String[MAX_ENROLLMENTS];
         enrollmentCourseCodes = new String[MAX_ENROLLMENTS];
         enrollmentCount = 0;
         this.courseManager = cm;
         this.studentManager = sm;
     }
-    
-    // Add a course to a student (initiate Course-Student relationship)
+
+    // 2a. Add a course to a student (initiate Course-Student relationship)
     public boolean addCourseToStudent(String studentID, String courseCode) {
         // Validate student exists in the system
         Student student = studentManager.getStudent(studentID);
@@ -68,7 +68,7 @@ public class EnrollmentManager {
         return true;
     }
 
-    // Add a student to a course (initiate Course-Student relationship)
+    // 2b. Add a student to a course (initiate Course-Student relationship)
     public boolean addStudentToCourse(String courseCode, String studentID) {
         // Delegates to addCourseToStudent (same relationship, different perspective)
         return addCourseToStudent(studentID, courseCode);
@@ -84,10 +84,10 @@ public class EnrollmentManager {
         return false;
     }
 
-    // Find a student's course based on student's ID
+    // 2c. Find a student's course based on student's ID
     public void findCourse(String studentID) {
         // Validate student exists
-         Student student = studentManager.getStudent(studentID);
+        Student student = studentManager.getStudent(studentID);
         if (student == null) {
             System.out.println("Error: Student with ID '" + studentID + "' not found in the system.");
             return;
@@ -110,7 +110,8 @@ public class EnrollmentManager {
             System.out.println("Student '" + studentID + "' is not enrolled in any course.");
         }
     }
-    // List all courses that a student is enrolled in
+
+    // 2d. List all courses that a student is enrolled in
     public void listCourses(String studentID) {
         Student student = studentManager.getStudent(studentID);
         if (student == null) {
@@ -133,27 +134,87 @@ public class EnrollmentManager {
                     courseNum++;
                 }
             }
-        
+        }
 
         if (!found) {
             System.out.println("No courses enrolled.");
         }
     }
-        
-    // Find a student in a course based on course's code
+
+    // 2e. Find a student in a course based on course's code
     public void findStudent(String courseCode) {
         // Validate course exists
+        Course course = courseManager.getCourse(courseCode);
+        if (course == null) {
+            System.out.println("Error: Course with code '" + courseCode + "' not found in the system.");
+            return;
+        }
+
+        boolean found = false;
+        for (int i = 0; i < enrollmentCount; i++) {
+            if (enrollmentCourseCodes[i].equals(courseCode)) {
+                Student student = studentManager.getStudent(enrollmentStudentIDs[i]);
+                if (student != null) {
+                    System.out.println("Student found: " + student.getStudentID() + " - "
+                            + student.getFirstName() + " " + student.getLastName());
+                    found = true;
+                }
+            }
+        }
 
         // Edge case: Course without an assigned student
+        if (!found) {
+            System.out.println("Course '" + courseCode + "' has no students enrolled.");
+        }
     }
 
-    // List all students assigned to a specific course
+    // 2f. List all students assigned to a specific course
     public void listStudents(String courseCode) {
-      
+        Course course = courseManager.getCourse(courseCode);
+        if (course == null) {
+            System.out.println("Error: Course with code '" + courseCode + "' not found in the system.");
+            return;
+        }
+
+        System.out.println("=== Students in Course: " + course.getCourseName() + " (" + courseCode + ") ===");
+        boolean found = false;
+        int studentNum = 1;
+
+        for (int i = 0; i < enrollmentCount; i++) {
+            if (enrollmentCourseCodes[i].equals(courseCode)) {
+                Student student = studentManager.getStudent(enrollmentStudentIDs[i]);
+                if (student != null) {
+                    System.out.println(studentNum + ". " + student.getStudentID() + " - "
+                            + student.getFirstName() + " " + student.getLastName()
+                            + " | Email: " + student.getEmail());
+                    found = true;
+                    studentNum++;
+                }
+            }
+        }
+
+        if (!found) {
+            System.out.println("No students enrolled in this course.");
+        }
     }
 
     // Display all enrollments
     public void displayAllEnrollments() {
+        System.out.println("=== All Enrollments ===");
+        if (enrollmentCount == 0) {
+            System.out.println("No enrollments available.");
+            return;
+        }
 
+        for (int i = 0; i < enrollmentCount; i++) {
+            Student student = studentManager.getStudent(enrollmentStudentIDs[i]);
+            Course course = courseManager.getCourse(enrollmentCourseCodes[i]);
+
+            String studentDisplay = (student != null) ? student.getFirstName() + " " + student.getLastName() : "Unknown";
+            String courseDisplay = (course != null) ? course.getCourseName() : "Unknown";
+
+            System.out.println((i + 1) + ". Student: " + enrollmentStudentIDs[i] + " (" + studentDisplay
+                    + ") <---> Course: " + enrollmentCourseCodes[i] + " (" + courseDisplay + ")");
+        }
     }
 }
