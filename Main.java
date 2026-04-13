@@ -170,6 +170,7 @@ public class Main {
                     break;
 
                 case 6:
+                    cacheAPI.clearCache();
                     courseMenuRunning = false;
                     break;
 
@@ -287,6 +288,7 @@ public class Main {
                     break;
 
                 case 6:
+                    cacheAPI.clearCache();
                     studentMenuRunning = false;
                     break;
 
@@ -393,6 +395,7 @@ public class Main {
                     break;
 
                 case 8:
+                    cacheAPI.clearCache();
                     enrollmentMenuRunning = false;
                     break;
 
