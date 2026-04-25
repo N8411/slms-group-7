@@ -15,6 +15,20 @@ public class StudentManager {
 
     // 1. Student Input Implementation (nabil)
     public void addStudent(Student newStudent) {
+        // Check for null student
+        if (newStudent == null) {
+            System.out.println("Error: Student data cannot be null!");
+            return;
+        }
+
+        // Check for duplicate student ID
+        for (int i = 0; i < studentCount; i++) {
+            if (studentList[i].getStudentID().equals(newStudent.getStudentID())) {
+                System.out.println("Error: Student with ID '" + newStudent.getStudentID() + "' already exists!");
+                return;
+            }
+        }
+
         // Prevent array out-of-bound error
         if (studentCount >= studentList.length) {
             System.out.println("Error: Student list is full!");
@@ -28,6 +42,12 @@ public class StudentManager {
 
     // 2. Search Function Development (Wan)
     public Student searchStudent(String searchID) {
+        // Validate input parameter
+        if (searchID == null || searchID.trim().isEmpty()) {
+            System.out.println("Error: Search ID cannot be empty.");
+            return null;
+        }
+
         // Implement a linear search function
         for (int i = 0; i < studentCount; i++) {
             if (studentList[i].getStudentID().equals(searchID)) {
@@ -41,6 +61,11 @@ public class StudentManager {
 
     // Silent search (for internal use by EnrollmentManager - no print)
     public Student getStudent(String searchID) {
+        // Validate input parameter
+        if (searchID == null || searchID.trim().isEmpty()) {
+            return null;
+        }
+
         for (int i = 0; i < studentCount; i++) {
             if (studentList[i].getStudentID().equals(searchID)) {
                 return studentList[i];
@@ -68,6 +93,12 @@ public class StudentManager {
 
     // 4. Delete Function Development (Irfan)
     public void deleteStudent(String searchID) {
+        // Validate input parameter
+        if (searchID == null || searchID.trim().isEmpty()) {
+            System.out.println("Error: Student ID cannot be empty.");
+            return;
+        }
+
         int targetIndex = -1;
 
         // Search for the target student to delete
