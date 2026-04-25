@@ -32,6 +32,16 @@ public class EnrollmentManager {
 
     // Add a course to a student (initiate Course-Student relationship)
     public boolean addCourseToStudent(String studentID, String courseCode) {
+        // Validate input parameters
+        if (studentID == null || studentID.trim().isEmpty()) {
+            System.out.println("Error: Student ID cannot be empty.");
+            return false;
+        }
+        if (courseCode == null || courseCode.trim().isEmpty()) {
+            System.out.println("Error: Course code cannot be empty.");
+            return false;
+        }
+
         // Validate student exists in the system
         Student student = studentManager.getStudent(studentID);
         if (student == null) {
@@ -70,6 +80,16 @@ public class EnrollmentManager {
 
     // Add a student to a course (initiate Course-Student relationship)
     public boolean addStudentToCourse(String courseCode, String studentID) {
+        // Validate input parameters
+        if (courseCode == null || courseCode.trim().isEmpty()) {
+            System.out.println("Error: Course code cannot be empty.");
+            return false;
+        }
+        if (studentID == null || studentID.trim().isEmpty()) {
+            System.out.println("Error: Student ID cannot be empty.");
+            return false;
+        }
+
         // Delegates to addCourseToStudent (same relationship, different perspective)
         return addCourseToStudent(studentID, courseCode);
     }
@@ -77,7 +97,8 @@ public class EnrollmentManager {
     // Helper: Check if a student is already enrolled in a course
     private boolean isEnrolled(String studentID, String courseCode) {
         for (int i = 0; i < enrollmentCount; i++) {
-            if (enrollmentStudentIDs[i].equals(studentID) && enrollmentCourseCodes[i].equals(courseCode)) {
+            if (enrollmentStudentIDs[i] != null && enrollmentCourseCodes[i] != null
+                    && enrollmentStudentIDs[i].equals(studentID) && enrollmentCourseCodes[i].equals(courseCode)) {
                 return true;
             }
         }
@@ -86,6 +107,12 @@ public class EnrollmentManager {
 
     // Find a student's course based on student's ID
     public void findCourse(String studentID) {
+        // Validate input parameter
+        if (studentID == null || studentID.trim().isEmpty()) {
+            System.out.println("Error: Student ID cannot be empty.");
+            return;
+        }
+
         // Validate student exists
         Student student = studentManager.getStudent(studentID);
         if (student == null) {
@@ -95,7 +122,7 @@ public class EnrollmentManager {
 
         boolean found = false;
         for (int i = 0; i < enrollmentCount; i++) {
-            if (enrollmentStudentIDs[i].equals(studentID)) {
+            if (enrollmentStudentIDs[i] != null && enrollmentStudentIDs[i].equals(studentID)) {
                 Course course = courseManager.getCourse(enrollmentCourseCodes[i]);
                 if (course != null) {
                     System.out.println("Course found: " + course.getCourseCode() + " - "
@@ -113,6 +140,12 @@ public class EnrollmentManager {
 
     // List all courses that a student is enrolled in
     public void listCourses(String studentID) {
+        // Validate input parameter
+        if (studentID == null || studentID.trim().isEmpty()) {
+            System.out.println("Error: Student ID cannot be empty.");
+            return;
+        }
+
         Student student = studentManager.getStudent(studentID);
         if (student == null) {
             System.out.println("Error: Student with ID '" + studentID + "' not found in the system.");
@@ -125,7 +158,7 @@ public class EnrollmentManager {
         int courseNum = 1;
 
         for (int i = 0; i < enrollmentCount; i++) {
-            if (enrollmentStudentIDs[i].equals(studentID)) {
+            if (enrollmentStudentIDs[i] != null && enrollmentStudentIDs[i].equals(studentID)) {
                 Course course = courseManager.getCourse(enrollmentCourseCodes[i]);
                 if (course != null) {
                     System.out.println(courseNum + ". " + course.getCourseCode() + " - " + course.getCourseName()
@@ -143,6 +176,12 @@ public class EnrollmentManager {
 
     // Find a student in a course based on course's code
     public void findStudent(String courseCode) {
+        // Validate input parameter
+        if (courseCode == null || courseCode.trim().isEmpty()) {
+            System.out.println("Error: Course code cannot be empty.");
+            return;
+        }
+
         // Validate course exists
         Course course = courseManager.getCourse(courseCode);
         if (course == null) {
@@ -152,7 +191,7 @@ public class EnrollmentManager {
 
         boolean found = false;
         for (int i = 0; i < enrollmentCount; i++) {
-            if (enrollmentCourseCodes[i].equals(courseCode)) {
+            if (enrollmentCourseCodes[i] != null && enrollmentCourseCodes[i].equals(courseCode)) {
                 Student student = studentManager.getStudent(enrollmentStudentIDs[i]);
                 if (student != null) {
                     System.out.println("Student found: " + student.getStudentID() + " - "
@@ -170,6 +209,12 @@ public class EnrollmentManager {
 
     // List all students assigned to a specific course
     public void listStudents(String courseCode) {
+        // Validate input parameter
+        if (courseCode == null || courseCode.trim().isEmpty()) {
+            System.out.println("Error: Course code cannot be empty.");
+            return;
+        }
+
         Course course = courseManager.getCourse(courseCode);
         if (course == null) {
             System.out.println("Error: Course with code '" + courseCode + "' not found in the system.");
@@ -181,7 +226,7 @@ public class EnrollmentManager {
         int studentNum = 1;
 
         for (int i = 0; i < enrollmentCount; i++) {
-            if (enrollmentCourseCodes[i].equals(courseCode)) {
+            if (enrollmentCourseCodes[i] != null && enrollmentCourseCodes[i].equals(courseCode)) {
                 Student student = studentManager.getStudent(enrollmentStudentIDs[i]);
                 if (student != null) {
                     System.out.println(studentNum + ". " + student.getStudentID() + " - "
