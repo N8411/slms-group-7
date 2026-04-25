@@ -30,7 +30,8 @@ public class CacheAPI {
      * @param value     The value entered by the user
      */
     public void cacheTextField(String fieldType, String value) {
-        if (value == null || value.trim().isEmpty()) {
+        // Validate input parameters
+        if (fieldType == null || value == null || value.trim().isEmpty()) {
             return;
         }
 
@@ -67,6 +68,11 @@ public class CacheAPI {
      * @param type "course" or "student" to determine which suggestions to show
      */
     public void showAutoSuggestion(String type) {
+        // Validate input parameter
+        if (type == null) {
+            return;
+        }
+
         // Use java.util.Arrays API (as mentioned by lecturer - library like Math is also acceptable)
         switch (type) {
             case "course":
@@ -104,6 +110,11 @@ public class CacheAPI {
      * @return Array of matching suggestions
      */
     public String[] searchSuggestions(String type, String prefix) {
+        // Validate input parameters
+        if (type == null || prefix == null) {
+            return new String[0];
+        }
+
         // Use java.lang.String API - toLowerCase() and startsWith()
         String lowerPrefix = prefix.toLowerCase();
         ArrayList<String> matches = new ArrayList<>();
