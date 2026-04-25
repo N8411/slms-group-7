@@ -1,106 +1,160 @@
-# EduTrack - Student Learning Management System (SLMS)
+# SLMS - Student Learning Management System
 
 ## Description
 
-EduTrack is a Student Learning Management System (SLMS) designed to manage students profile, courses profile, and users registration in an organized and efficient way.  
+SLMS is a console-based Java application designed to manage students, courses, and their enrollments in an organized and efficient way.
 
-This system allows administrators, lecturers, and students to interact within a centralized platform.
+This system provides administrators with a centralized platform to perform full CRUD operations across students, courses, and their many-to-many relationships — complete with a simulated caching and auto-suggestion API to streamline data entry.
 
-## Use Case Diagram
+> **Note:** This project was built and tested using [OnlineGDB](https://www.onlinegdb.com/) as the primary Java compiler/IDE.
 
-The Use Case Diagram illustrates the functional requirements of the Student Learning Management System (SLMS) by showing the interactions between users (actors) and the system. It identifies the main roles in the system, such as Student, Lecturer, and Admin, and the actions each role can perform.
-<img width="1038" height="1040" alt="Screenshot 2026-02-23 205306" src="https://github.com/user-attachments/assets/2ed9ee0e-c72a-42a1-afd8-9c9c9337d237" />
-The main roles of the actors: <br>
-<br>**Admin:** The Admin has full control over the system. The Admin is responsible for managing both courses and students. This includes adding, searching, editing, deleting, and viewing all courses and student records. The Admin ensures that the system data is accurate and properly maintained.
+---
 
-<br>**Student:** The Student interacts with the system mainly to access course information. Students can log in, search for courses, view available courses, and log out. Their role is focused on accessing learning materials and course-related information.
+## Features
 
-<br>**Lecturer:** The Lecturer manages academic-related activities within the system. The Lecturer can log in, view courses, search courses, and access student information related to their courses. Their role focuses on course management and monitoring student participation.
-## Class Diagram
-<img width="1005" height="1060" alt="Screenshot 2026-02-23 205726" src="https://github.com/user-attachments/assets/7ba87081-b504-452e-bab8-fc3bd7bf9d80" />
+### Course Management
+Administrators can create new courses with attributes such as code, name, type (core/elective/university), credit hours, summary, and MS Teams link. Courses support linear search by code, field editing (course code is immutable), deletion with array-shifting, and a formatted list view.
 
-## Documentation Formatting
+### Student Management
+Administrators can enroll new students with ID, name, email (format validated), and phone number. Students support linear search by ID, field editing (student ID is immutable), deletion with array-shifting, and a formatted list view.
 
-### a) Main page:
-- The main page will display 3 button options to allow user choose their role whether they are a student, lecturer or admin
-<img width="797" height="432" alt="Screenshot 2026-02-23 210906" src="https://github.com/user-attachments/assets/50e45d4d-c1f6-4aa8-8ba9-3a2317155bab" />
+### Enrollment Management
+Uses parallel arrays to model a many-to-many relationship between students and courses. Supports enrolling a student into a course, duplicate prevention, querying all courses for a student, querying all students in a course, and a full enrollment mapping view.
 
- 
-### b) Student / Lecturer / Admin Page:
-The page may contain multiple table of contents to separate different action categories called “section” (e.g. manage users and manage course will have their own table of contents). <br>
-Structure of the page:
-<pre>
-1. Fixed Top Bar:
-- Contains back button for user to return to the main page
-- Contains pagination to show user where they are currently (e.g., documentation > lecturer)
-2. Section title: size of H2 and Bold
-3. Section content: table of content that has 3 columns (numbering, action type and links to navigate to appropriate files (c))
-</pre>           
-<img width="747" height="401" alt="Screenshot 2026-02-23 210917" src="https://github.com/user-attachments/assets/6824eb06-aa57-42eb-8f20-76983a18a0c7" />
+### CacheAPI (Auto-Suggestion & Caching)
+A simulated session-level caching utility that remembers recently entered Student IDs and Course Codes. Before prompting for input, the system displays existing records and recent cache entries to guide the user. Partial-string autocomplete is powered by Java's `String` API (`startsWith`, `toLowerCase`). Cache is cleared upon returning to the main menu to ensure data freshness.
 
+---
 
+## Tech Stack & Concepts
 
-### c) Files
-Structure of every files:
+**Language:** Java (Standard Edition)  
+**Environment:** OnlineGDB
 
-### 1. Fixed Top Bar:
-<pre>
-a. Contains back button for user to return to previous page
-b. Contains pagination to show user where they are currently (e.g., documentation > lecturer > add new course)
-c. Contains information on last updated date and who edited the documentation
-</pre>
+**Data Structures:** Fixed-size 1D Arrays, Parallel Arrays, `ArrayList` (for caching)
 
-### 2. File Content:
-<pre>
-a. Users must be guided step by step by using numbering.
-b. Each step will have their own title
-c. The title font style would be Underlined H
-d. Each Title may contain some parts that need be structured, use H3 font style for it
-e. Images to be displayed must be centered horizontally
-f. If the content has embedded links to navigate to, it must be displayed through popups
-</pre>
-<img width="896" height="583" alt="Screenshot 2026-02-23 210928" src="https://github.com/user-attachments/assets/e3244d15-460d-4062-88b6-3ecea0a0bd9f" />
+**Core Concepts:**
+- Object-Oriented Programming (Encapsulation, Separation of Concerns)
+- Linear Search Algorithms
+- Array Manipulation (deletion via element shifting)
+- Input Validation & Exception Handling (`InputMismatchException`)
+- Java Utility APIs (`java.util.Scanner`, `java.util.ArrayList`, `java.util.Arrays`)
 
+---
+
+## Getting Started (OnlineGDB)
+
+Since this project uses multiple Java classes, follow these steps to run it on OnlineGDB:
+
+1. Go to [OnlineGDB](https://www.onlinegdb.com/) and set the language to **Java**.
+2. By default, OnlineGDB creates a single `Main.java` file.
+3. Click the **"+"** (New File) tab and create the following files exactly as named:
+   - `Student.java`
+   - `StudentManager.java`
+   - `Course.java`
+   - `CourseManager.java`
+   - `EnrollmentManager.java`
+   - `CacheAPI.java`
+4. Paste the respective source code from this repository into each file.
+5. Click the green **Run** button. The console will start the program.
+
+---
+
+## Project Structure
+
+```
+SLMS/
+├── Main.java               # Entry point, menu UI, and input handling
+├── Student.java            # Student data model (entity)
+├── Course.java             # Course data model (entity)
+├── StudentManager.java     # Business logic for student array management
+├── CourseManager.java      # Business logic for course array management
+├── EnrollmentManager.java  # Business logic for course-student relationships (parallel arrays)
+└── CacheAPI.java           # Simulated caching and auto-suggestion utility
+```
+
+---
+
+## Usage Guide
+
+Upon running the application, the main menu is displayed:
+
+```
+--- MAIN MENU ---
+1. Course Management
+2. Student Management
+3. Enrollment Management
+4. Exit
+```
+
+**Workflow example:**
+
+1. Select `1` → Course Management → add a few courses.
+2. Select `2` → Student Management → add a few students.
+3. Select `3` → Enrollment Management.
+4. Use option `1. Add Course to Student` to link them.
+5. Use option `4. List All Courses for a Student` to view the relationship.
+
+> Notice the `[Auto-Suggest]` and `[Cache]` prompts while entering IDs or Codes — these help you type correct values without memorizing them.
+
+---
 
 ## Coding File Formatting
-<pre>
-● Indentation: We will strictly use 4 spaces for indentation (no mixing tabs and spaces).
-● Braces: Opening curly braces { will stay on the same line as the statement (e.g., if (condition) {), and closing braces } will be on a new line.
-● Line Length: We will try to keep lines under 100 characters so we don't have to scroll horizontally.
-● Whitespaces: Writing more than 1 space is not allowed even for assignment operator unless for indentation
-</pre>
+
+```
+- Indentation:   4 spaces strictly (no mixing tabs and spaces)
+- Braces:        Opening { stays on the same line as the statement; closing } on a new line
+- Line Length:   Keep lines under 100 characters
+- Whitespaces:   No more than 1 space allowed (except for indentation)
+```
+
+---
 
 ## Naming Conventions
-<pre>
-● All namings must be in English and appropriate
-● File name: be short as possible, use lower case characters only, use underscore if it has multiple words (e.g. user_dashboard.tsx)
-● Classes: PascalCase (e.g., CourseProfile, StudentManager).
-● Variables and Methods: camelCase (e.g., studentName, getCourseCode()).
-● Constants: UPPERCASE_WITH_UNDERSCORES (e.g., MAX_STUDENTS).
-● Arrays/Lists: Plural names to show they hold multiple items (e.g., courseList, students).
-● Booleans, null, undefined values: use upper case for TRUE, FALSE, NULL, UNDEFINED
-</pre>
 
-## Function and Methods Modularity
-<pre>
-● Single Responsibility: Every function should do only one thing. For example, a function that searches for a student should not also print the output.
-● Function Length: We will aim to keep functions short, ideally under 40-50 lines. If a function gets too long, we will break it down into smaller helper methods.
-● Naming and structure: The function should use descriptive names that clearly show purpose and use consistent namespace and prefixing for groups of functions. 
-  This is to help increase readability.
-● Loose Coupling: Modules should have minimal dependencies on each other. A change in one module should ideally not require changes in others.
-● camelCase: Function and method names will follow the camelCase convention instead of underscores. All functions will use meaningful verb-based names (e.g.,
-  calculateGrade(), getScoret()). Consistency across the system will be strictly maintained.
-● Clear Parameters: Parameter names should be meaningful and simple. For example, calculateGrade(int totalMarks, int assignmentWeight). 
-  The maximum parameters should have only 4 - 5 to avoid complexity, therefore it is recommended to use an object if too many.
-</pre>
+```
+- File names:      Lowercase only; use underscores for multiple words (e.g., user_dashboard.tsx)
+- Classes:         PascalCase (e.g., CourseProfile, StudentManager)
+- Variables/Methods: camelCase (e.g., studentName, getCourseCode())
+- Constants:       UPPERCASE_WITH_UNDERSCORES (e.g., MAX_STUDENTS)
+- Arrays/Lists:    Plural names (e.g., courseList, students)
+- Booleans/null:   Use uppercase TRUE, FALSE, NULL, UNDEFINED
+```
+
+All names must be in English and semantically appropriate.
+
+---
+
+## Function and Method Modularity
+
+```
+- Single Responsibility:  Every function does one thing only
+- Function Length:        Aim for under 40–50 lines; break down longer functions
+- Naming:                 Use descriptive, verb-based camelCase names (e.g., calculateGrade(), getScore())
+- Loose Coupling:         Minimize inter-module dependencies
+- Parameters:             Meaningful names; max 4–5 params (use an object if more are needed)
+```
+
+---
 
 ## Continuous Integration Rules
-<pre>
-Since we are using GitHub to monitor the main branch, we will follow these steps:
-● Branching: Nobody can push directly to the main branch except the team leader. Everyone must create a new branch for their features (e.g., feature/lab3-course-profile).
-● Commits: Commit messages must be clear and describe what was changed (e.g., "Add linear search function for student ID").
-● Pull Requests (PR): To merge into main, a PR must be opened. The team leader must review and authorize the merge to prevent breaking the main codebase.
-● Task and issue management: Github issues will be used to help manage team tasks and track bugs. 
-  Each issue will be assigned to a specific team member, include a clear description of the task, and be linked to a corresponding feature branch. 
-  This ensures clear responsibility, better organization, and smooth collaboration among team members.
-</pre>
+
+```
+- Branching:     No direct pushes to main; create feature branches (e.g., feature/lab3-course-profile)
+- Commits:       Clear, descriptive messages (e.g., "Add linear search function for student ID")
+- Pull Requests: A PR must be opened and reviewed by the team leader before merging
+- Issue Tracking: GitHub Issues used for task assignment, descriptions, and branch linking
+```
+
+---
+
+## Contributors
+
+| Name | Contributions |
+|---|---|
+| Wan | Data member design, search function, edit function |
+| Nabil | Data member design, student input/array implementation |
+| Asyraaf | Getter/setter methods, data display function |
+| Irfan | Display functions, delete function (array shifting logic) |
+
+> `CacheAPI` and `EnrollmentManager` were integrated collaboratively to fulfill system relationship and API requirements.
