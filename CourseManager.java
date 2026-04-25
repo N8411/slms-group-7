@@ -15,6 +15,20 @@ public class CourseManager {
 
     // 1. Course Input Implementation
     public void addCourse(Course newCourse) {
+        // Check for null course
+        if (newCourse == null) {
+            System.out.println("Error: Course data cannot be null!");
+            return;
+        }
+
+        // Check for duplicate course code
+        for (int i = 0; i < courseCount; i++) {
+            if (courseList[i].getCourseCode().equals(newCourse.getCourseCode())) {
+                System.out.println("Error: Course with code '" + newCourse.getCourseCode() + "' already exists!");
+                return;
+            }
+        }
+
         // Prevent array out-of-bound error
         if (courseCount >= courseList.length) {
             System.out.println("Error: Course list is full!");
@@ -28,6 +42,12 @@ public class CourseManager {
 
     // 2. Search Function Development
     public Course searchCourse(String searchCode) {
+        // Validate input parameter
+        if (searchCode == null || searchCode.trim().isEmpty()) {
+            System.out.println("Error: Search code cannot be empty.");
+            return null;
+        }
+
         // Implement a linear search function
         for (int i = 0; i < courseCount; i++) {
             // Use .equals() for string comparison in Java
@@ -42,6 +62,11 @@ public class CourseManager {
 
     // Silent search (for internal use by EnrollmentManager - no print)
     public Course getCourse(String searchCode) {
+        // Validate input parameter
+        if (searchCode == null || searchCode.trim().isEmpty()) {
+            return null;
+        }
+
         for (int i = 0; i < courseCount; i++) {
             if (courseList[i].getCourseCode().equals(searchCode)) {
                 return courseList[i];
@@ -68,6 +93,12 @@ public class CourseManager {
 
     // 4. Delete Function Development
     public void deleteCourse(String searchCode) {
+        // Validate input parameter
+        if (searchCode == null || searchCode.trim().isEmpty()) {
+            System.out.println("Error: Course code cannot be empty.");
+            return;
+        }
+
         int targetIndex = -1;
 
         // Search for the target course to delete
@@ -111,7 +142,7 @@ public class CourseManager {
         }
     }
 
-    // NEW: Get all course display strings for API auto-suggestion
+    // Get all course display strings for API auto-suggestion
     public String[] getAllCourseDisplayStrings() {
         String[] displays = new String[courseCount];
         for (int i = 0; i < courseCount; i++) {
@@ -120,7 +151,7 @@ public class CourseManager {
         return displays;
     }
 
-    // NEW: Get all course codes
+    // Get all course codes
     public String[] getAllCourseCodes() {
         String[] codes = new String[courseCount];
         for (int i = 0; i < courseCount; i++) {
