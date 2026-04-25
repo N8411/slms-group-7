@@ -9,6 +9,7 @@
  *
  */
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Main {
     public static void main(String[] args) {
@@ -30,8 +31,15 @@ public class Main {
             System.out.println("4. Exit");
             System.out.print("Select an option (1-4): ");
             
-            int mainChoice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline
+            int mainChoice;
+            try {
+                mainChoice = scanner.nextInt();
+                scanner.nextLine(); // Consume the newline
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine(); // Clear invalid input from buffer
+                continue;
+            }
 
             switch (mainChoice) {
                 case 1:
@@ -66,8 +74,15 @@ public class Main {
             System.out.println("6. Back to Main Menu");
             System.out.print("Select an option (1-6): ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice;
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine(); // Clear invalid input from buffer
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -78,19 +93,42 @@ public class Main {
 
                     System.out.print("Enter Course Code: ");
                     String code = scanner.nextLine();
+                    if (code.trim().isEmpty()) {
+                        System.out.println("Error: Course Code cannot be empty.");
+                        break;
+                    }
                     // Cache the input for future auto-suggestion
                     cacheAPI.cacheTextField("courseCode", code);
 
                     System.out.print("Enter Course Name: ");
                     String name = scanner.nextLine();
+                    if (name.trim().isEmpty()) {
+                        System.out.println("Error: Course Name cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("courseName", name);
 
                     System.out.print("Enter Course Type (core/elective/university): ");
                     String courseType = scanner.nextLine();
+                    if (!courseType.equalsIgnoreCase("core") && !courseType.equalsIgnoreCase("elective") && !courseType.equalsIgnoreCase("university")) {
+                        System.out.println("Error: Course Type must be 'core', 'elective', or 'university'.");
+                        break;
+                    }
 
                     System.out.print("Enter Credit Hours: ");
-                    int credits = scanner.nextInt();
-                    scanner.nextLine();
+                    int credits = 0;
+                    try {
+                        credits = scanner.nextInt();
+                        scanner.nextLine();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Credit hours must be a positive integer.");
+                        scanner.nextLine(); // Clear invalid input from buffer
+                        break;
+                    }
+                    if (credits <= 0) {
+                        System.out.println("Error: Credit hours must be a positive number.");
+                        break;
+                    }
 
                     System.out.print("Enter Course Summary: ");
                     String summary = scanner.nextLine();
@@ -107,6 +145,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("course");
                     System.out.print("Enter Course Code to search: ");
                     String searchCode = scanner.nextLine();
+                    if (searchCode.trim().isEmpty()) {
+                        System.out.println("Error: Course Code cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("courseCode", searchCode);
 
                     Course foundCourse = manager.searchCourse(searchCode);
@@ -121,6 +163,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("course");
                     System.out.print("Enter Course Code to edit: ");
                     String editCode = scanner.nextLine();
+                    if (editCode.trim().isEmpty()) {
+                        System.out.println("Error: Course Code cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("courseCode", editCode);
 
                     Course courseToEdit = manager.searchCourse(editCode);
@@ -129,11 +175,30 @@ public class Main {
                         System.out.println("Course found! Enter new details (Course Code cannot be changed).");
                         System.out.print("Enter New Course Name: ");
                         String newName = scanner.nextLine();
+                        if (newName.trim().isEmpty()) {
+                            System.out.println("Error: Course Name cannot be empty.");
+                            break;
+                        }
                         System.out.print("Enter New Course Type (core/elective/university): ");
                         String newCourseType = scanner.nextLine();
+                        if (!newCourseType.equalsIgnoreCase("core") && !newCourseType.equalsIgnoreCase("elective") && !newCourseType.equalsIgnoreCase("university")) {
+                            System.out.println("Error: Course Type must be 'core', 'elective', or 'university'.");
+                            break;
+                        }
                         System.out.print("Enter New Credit Hours: ");
-                        int newCredits = scanner.nextInt();
-                        scanner.nextLine();
+                        int newCredits = 0;
+                        try {
+                            newCredits = scanner.nextInt();
+                            scanner.nextLine();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Invalid input. Credit hours must be a positive integer.");
+                            scanner.nextLine(); // Clear invalid input from buffer
+                            break;
+                        }
+                        if (newCredits <= 0) {
+                            System.out.println("Error: Credit hours must be a positive number.");
+                            break;
+                        }
                         System.out.print("Enter New Course Summary: ");
                         String newSummary = scanner.nextLine();
                         System.out.print("Enter New MS Teams Link: ");
@@ -148,6 +213,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("course");
                     System.out.print("Enter Course Code to delete: ");
                     String deleteCode = scanner.nextLine();
+                    if (deleteCode.trim().isEmpty()) {
+                        System.out.println("Error: Course Code cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("courseCode", deleteCode);
 
                     Course courseToDelete = manager.searchCourse(deleteCode);
@@ -193,8 +262,15 @@ public class Main {
             System.out.println("6. Back to Main Menu");
             System.out.print("Select an option (1-6): ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice;
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine(); // Clear invalid input from buffer
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -205,19 +281,43 @@ public class Main {
 
                     System.out.print("Enter Student ID: ");
                     String id = scanner.nextLine();
+                    if (id.trim().isEmpty()) {
+                        System.out.println("Error: Student ID cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("studentID", id);
 
                     System.out.print("Enter First Name: ");
                     String fName = scanner.nextLine();
+                    if (fName.trim().isEmpty()) {
+                        System.out.println("Error: First Name cannot be empty.");
+                        break;
+                    }
 
                     System.out.print("Enter Last Name: ");
                     String lName = scanner.nextLine();
+                    if (lName.trim().isEmpty()) {
+                        System.out.println("Error: Last Name cannot be empty.");
+                        break;
+                    }
 
                     System.out.print("Enter Email: ");
                     String email = scanner.nextLine();
+                    if (email.trim().isEmpty()) {
+                        System.out.println("Error: Email cannot be empty.");
+                        break;
+                    }
+                    if (!email.contains("@") || !email.contains(".")) {
+                        System.out.println("Error: Invalid email format. Email must contain '@' and '.'.");
+                        break;
+                    }
 
                     System.out.print("Enter Phone Number: ");
                     String phone = scanner.nextLine();
+                    if (phone.trim().isEmpty()) {
+                        System.out.println("Error: Phone Number cannot be empty.");
+                        break;
+                    }
 
                     Student newStudent = new Student(fName, lName, id, email, phone);
                     manager.addStudent(newStudent);
@@ -228,6 +328,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("student");
                     System.out.print("Enter Student ID to search: ");
                     String searchID = scanner.nextLine();
+                    if (searchID.trim().isEmpty()) {
+                        System.out.println("Error: Student ID cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("studentID", searchID);
 
                     Student foundStudent = manager.searchStudent(searchID);
@@ -242,6 +346,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("student");
                     System.out.print("Enter Student ID to edit: ");
                     String editID = scanner.nextLine();
+                    if (editID.trim().isEmpty()) {
+                        System.out.println("Error: Student ID cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("studentID", editID);
 
                     Student studentToEdit = manager.searchStudent(editID);
@@ -250,12 +358,32 @@ public class Main {
                         System.out.println("Student found! Enter new details (Student ID cannot be changed).");
                         System.out.print("Enter New First Name: ");
                         String newFName = scanner.nextLine();
+                        if (newFName.trim().isEmpty()) {
+                            System.out.println("Error: First Name cannot be empty.");
+                            break;
+                        }
                         System.out.print("Enter New Last Name: ");
                         String newLName = scanner.nextLine();
+                        if (newLName.trim().isEmpty()) {
+                            System.out.println("Error: Last Name cannot be empty.");
+                            break;
+                        }
                         System.out.print("Enter New Email: ");
                         String newEmail = scanner.nextLine();
+                        if (newEmail.trim().isEmpty()) {
+                            System.out.println("Error: Email cannot be empty.");
+                            break;
+                        }
+                        if (!newEmail.contains("@") || !newEmail.contains(".")) {
+                            System.out.println("Error: Invalid email format. Email must contain '@' and '.'.");
+                            break;
+                        }
                         System.out.print("Enter New Phone Number: ");
                         String newPhone = scanner.nextLine();
+                        if (newPhone.trim().isEmpty()) {
+                            System.out.println("Error: Phone Number cannot be empty.");
+                            break;
+                        }
 
                         manager.editStudent(editID, newFName, newLName, newEmail, newPhone);
                     }
@@ -266,6 +394,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("student");
                     System.out.print("Enter Student ID to delete: ");
                     String deleteID = scanner.nextLine();
+                    if (deleteID.trim().isEmpty()) {
+                        System.out.println("Error: Student ID cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("studentID", deleteID);
 
                     Student studentToDelete = manager.searchStudent(deleteID);
@@ -315,8 +447,15 @@ public class Main {
             System.out.println("8. Back to Main Menu");
             System.out.print("Select an option (1-8): ");
 
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+            int choice;
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine(); // Clear invalid input from buffer
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -324,11 +463,19 @@ public class Main {
                     cacheAPI.showAutoSuggestion("student");
                     System.out.print("Enter Student ID: ");
                     String studentID1 = scanner.nextLine();
+                    if (studentID1.trim().isEmpty()) {
+                        System.out.println("Error: Student ID cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("studentID", studentID1);
 
                     cacheAPI.showAutoSuggestion("course");
                     System.out.print("Enter Course Code: ");
                     String courseCode1 = scanner.nextLine();
+                    if (courseCode1.trim().isEmpty()) {
+                        System.out.println("Error: Course Code cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("courseCode", courseCode1);
 
                     enrollmentManager.addCourseToStudent(studentID1, courseCode1);
@@ -339,11 +486,19 @@ public class Main {
                     cacheAPI.showAutoSuggestion("course");
                     System.out.print("Enter Course Code: ");
                     String courseCode2 = scanner.nextLine();
+                    if (courseCode2.trim().isEmpty()) {
+                        System.out.println("Error: Course Code cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("courseCode", courseCode2);
 
                     cacheAPI.showAutoSuggestion("student");
                     System.out.print("Enter Student ID: ");
                     String studentID2 = scanner.nextLine();
+                    if (studentID2.trim().isEmpty()) {
+                        System.out.println("Error: Student ID cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("studentID", studentID2);
 
                     enrollmentManager.addStudentToCourse(courseCode2, studentID2);
@@ -354,6 +509,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("student");
                     System.out.print("Enter Student ID: ");
                     String studentID3 = scanner.nextLine();
+                    if (studentID3.trim().isEmpty()) {
+                        System.out.println("Error: Student ID cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("studentID", studentID3);
 
                     enrollmentManager.findCourse(studentID3);
@@ -364,6 +523,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("student");
                     System.out.print("Enter Student ID: ");
                     String studentID4 = scanner.nextLine();
+                    if (studentID4.trim().isEmpty()) {
+                        System.out.println("Error: Student ID cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("studentID", studentID4);
 
                     enrollmentManager.listCourses(studentID4);
@@ -374,6 +537,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("course");
                     System.out.print("Enter Course Code: ");
                     String courseCode5 = scanner.nextLine();
+                    if (courseCode5.trim().isEmpty()) {
+                        System.out.println("Error: Course Code cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("courseCode", courseCode5);
 
                     enrollmentManager.findStudent(courseCode5);
@@ -384,6 +551,10 @@ public class Main {
                     cacheAPI.showAutoSuggestion("course");
                     System.out.print("Enter Course Code: ");
                     String courseCode6 = scanner.nextLine();
+                    if (courseCode6.trim().isEmpty()) {
+                        System.out.println("Error: Course Code cannot be empty.");
+                        break;
+                    }
                     cacheAPI.cacheTextField("courseCode", courseCode6);
 
                     enrollmentManager.listStudents(courseCode6);
