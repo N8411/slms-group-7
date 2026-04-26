@@ -34,10 +34,6 @@ import java.util.InputMismatchException;
  * enters a non-numeric value where a number is expected. Invalid input is consumed from the
  * buffer and the user is prompted again.
  *
- * @see CourseManager
- * @see StudentManager
- * @see EnrollmentManager
- * @see CacheAPI
  */
 public class Main {
 
